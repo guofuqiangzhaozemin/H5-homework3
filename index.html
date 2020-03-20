@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        fieldset {
+            width: 680px;
+        }
+        
+        legend {
+            color: red;
+        }
+        
+        ul {
+            border: black solid 1px;
+        }
+        
+        ul,
+        li {
+            list-style: none;
+            display: inline-block;
+            width: 600px;
+            height: 50px;
+        }
+        
+        li {
+            float: left;
+            height: 20px;
+            width: 20px;
+            margin-left: 10px;
+            margin-top: 15px;
+        }
+        
+        #back1 {
+            background-color: red;
+        }
+        
+        #back2 {
+            background-color: green;
+        }
+        
+        #back3 {
+            background-color: hotpink;
+        }
+        
+        #back4 {
+            background-color: indigo;
+        }
+        
+        #back5 {
+            background-color: blue;
+        }
+        
+        #back6 {
+            background-color: grey;
+        }
+        
+        p {
+            width: 550px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <fieldset>
+        <legend>
+            <h2>网页换肤</h2>
+        </legend>
+        <ul>
+            <li id="back1"></li>
+            <li id="back2"></li>
+            <li id="back3"></li>
+            <li id="back4"></li>
+            <li id="back5"></li>
+            <li id="back6"></li>
+        </ul>
+        <p>
+            LocalStorage将数据保存在客户端本地得硬件设备中，即使浏览器被关闭了，<br/> 该数据仍然存在，下次打开浏览器访问网站时仍然可以继续使用。
+        </p>
+    </fieldset>
+</body>
+<script>
+    var p = document.getElementsByTagName("p")[0];
+    var li = document.getElementsByTagName("li");
+    var key1 = localStorage.getItem("key");
+    for (var i = 0; i < li.length; i++) {
+        li[i].index = i;
+        li[i].onclick = function() {
+            for (var j = 0; j < li.length; j++) {
+                li[j].style.marginTop = 15 + 'px';
+            }
+            this.style.marginTop = 5 + 'px';
+            var s = this.getAttribute("id");
+            p.setAttribute("id", s);
+            localStorage.setItem("key", this.index);
+        }
+    }
+    for (var i = 0; i < li.length; i++) {
+        if (i == key1) {
+            li[i].style.marginTop = 5 + 'px';
+            p.setAttribute("id", "back" + (i + 1));
+        }
+    }
+</script>
+
+</html>
